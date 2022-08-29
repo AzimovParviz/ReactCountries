@@ -1,13 +1,11 @@
 import { createStore, applyMiddleware, compose } from 'redux'
-import createSagaMiddleware from 'redux-saga'
 import thunk from 'redux-thunk'
 
 import { AppState } from '../types'
 import createRootReducer from './reducers'
-import rootSaga from './sagas'
 
 const initState: AppState = {
-  product: {
+  country: {
     inCart: [],
   },
   ui: {
@@ -16,8 +14,7 @@ const initState: AppState = {
 }
 
 export default function makeStore(initialState = initState) {
-  const sagaMiddleware = createSagaMiddleware()
-  const middlewares = [sagaMiddleware, thunk]
+  const middlewares = [thunk]
   let composeEnhancers = compose
 
   if (process.env.NODE_ENV === 'development') {
@@ -31,8 +28,6 @@ export default function makeStore(initialState = initState) {
     initialState,
     composeEnhancers(applyMiddleware(...middlewares))
   )
-
-  sagaMiddleware.run(rootSaga)
 
   if ((module as any).hot) {
     ;(module as any).hot.accept('./reducers', () => {
