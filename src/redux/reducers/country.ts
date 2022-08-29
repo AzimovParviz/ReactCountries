@@ -14,7 +14,7 @@ export default function country(
   switch (action.type) {
   case ADD_COUNTRY: {
     const { country } = action.payload
-    if (state.inCart.find((p) => p.id === country.id)) {
+    if (state.inCart.find((p) => p.name === country.name)) {
       return state
     }
     // Always return new state (e.g, new object) if changed
@@ -23,7 +23,7 @@ export default function country(
 
   case REMOVE_COUNTRY: {
     const { country } = action.payload
-    const index = state.inCart.findIndex((p) => p.id === country.id)
+    const index = state.inCart.findIndex((p) => p.name === country.name)
     if (index >= 0) {
       state.inCart.splice(index, 1)
       return { ...state, inCart: [...state.inCart] }

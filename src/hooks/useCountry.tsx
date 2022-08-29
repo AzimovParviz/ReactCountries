@@ -1,24 +1,26 @@
 import { useEffect, useState } from 'react'
+import { Country } from '../types'
 
 export const useCountry = () => {
-  const [country, setCountry] = useState({})
+  const [countries, setCountry] = useState<Country[] | null>()
   const [error, setError] = useState(false)
   //https://restcountries.com/v3.1/name/
   useEffect(() => {
     const fetchCountry = async () => {
       try {
-        const response = await fetch(`https://restcountries.com/v3.1/all`)
-        setCountry(response)
+        const response: any = await fetch(`https://restcountries.com/v3.1/all?fields=name,population`)
+        const jsonResponse: any = await response.json()
+        setCountry(jsonResponse)
         setError(false)
       } catch (_) {
         setError(true)
       }
     }
     fetchCountry()
-  }, [country])
+  }, [])
 
   return {
     error,
-    country,
+    countries,
   }
 }

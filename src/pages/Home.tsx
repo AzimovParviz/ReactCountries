@@ -1,18 +1,18 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import Button from '@mui/material/Button'
+import {Button, TableContainer, TableCell, TableRow} from '@mui/material/'
 
 import { Country, AppState } from '../types'
 import { addCountry, removeCountry } from '../redux/actions/country'
-
-const names = ['Apple', 'Orange', 'Avocado', 'Banana', 'Cucumber', 'Carrot']
+import { useCountry } from '../hooks/useCountry'
 
 export default function Home() {
   const dispatch = useDispatch()
-  const countries = useSelector((state: AppState) => state.country.inCart)
-
-  const handleAddcountry = () => {
+  //const countries = useSelector((state: AppState) => state.country.inCart)
+  const {countries, error} = useCountry()
+  console.log(countries)
+ /*  const handleAddcountry = () => {
     const country: Country = {
       id: (+new Date()).toString(),
       name: names[Math.floor(Math.random() * names.length)],
@@ -21,30 +21,27 @@ export default function Home() {
     }
     dispatch(addCountry(country))
   }
-
+ */
   return (
     <>
       <h1>Home page</h1>
-      {countries.length <= 0 && <div>No countries in cart</div>}
+      {error && <p>{error}</p>}
       <ul>
-        {countries.map((p) => (
-          <li key={p.id}>
+        {countries?.map((c: Country) => (
+          <li key={c.name.common}>
             <Link
-              to={`/countries/${p.id}`}
-            >{`${p.name} - $${p.population}`}</Link>
+              to={`/countries/${c.name.common}`}
+            >{`${c.name.common} - ${c.population} people`}</Link>
             <Button
               variant="outlined"
               color="error"
-              onClick={() => dispatch(removeCountry(p))}
+              onClick={() => dispatch(addCountry(c))}
             >
-              Remove
+              Add to cart
             </Button>
           </li>
         ))}
       </ul>
-      <Button onClick={handleAddcountry} variant="contained">
-        Add country
-      </Button>
     </>
   )
 }

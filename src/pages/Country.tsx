@@ -8,7 +8,7 @@ export default function Country() {
   const { id } = useParams<{ id: string }>()
 
   const country = useSelector((state: AppState) =>
-    state.country.inCart.find((p) => p.id === id)
+    state.country.inCart.find((c) => c.name.common === id)
   )
 
   if (!country) {

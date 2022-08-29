@@ -11,11 +11,18 @@ export enum DialogType {
   SignUp = 'signUp',
 }
 
+export type CountryName = {
+  common: string,
+  official: string
+}
+
 export type Country = {
-  id: string
-  name: string
-  population: string
-  currency: string[]
+  name: {
+    common: string,
+    official: string,
+    nativeName: CountryName[]
+  }
+  population: number
 }
 
 export type AddCountryAction = {
