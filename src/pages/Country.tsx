@@ -18,7 +18,7 @@ export default function Country() {
   return (
     <>
       <h1>country page</h1>
-      <h2>{`${country.name} - $${country.population}`}</h2>
+      <h2>{`${country.name}, there are ${country.population} people living there`}</h2>
     </>
   )
 }

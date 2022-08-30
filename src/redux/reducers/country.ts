@@ -17,6 +17,7 @@ export default function country(
     if (state.inCart.find((p) => p.name === country.name)) {
       return state
     }
+    console.log('added to cart', country.name)
     // Always return new state (e.g, new object) if changed
     return { ...state, inCart: [...state.inCart, country] }
   }
