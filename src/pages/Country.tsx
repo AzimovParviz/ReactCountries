@@ -11,6 +11,8 @@ export default function Country() {
     state.country.inCart.find((c) => c.name.common === id)
   )
 
+  console.log('country asked for is', id)
+
   if (!country) {
     return <div>country not found</div>
   }
