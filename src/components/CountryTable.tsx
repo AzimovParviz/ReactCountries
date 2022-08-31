@@ -8,12 +8,13 @@ import {
   TableRow,
   Table,
 } from '@mui/material/'
+import AddShoppingCart from '@mui/icons-material/AddShoppingCart'
 
 import CountryModal from './CountryModal'
 
 import { Country } from '../types'
 import { addCountry } from '../redux/actions/country'
-
+/* TODO: loading icon and loading state passing as props */
 type TableProps = {
   countries: Country[]
   /*     loading: boolean */
@@ -41,22 +42,31 @@ export default function CountryTable(props: TableProps) {
             {/* <TableCell><Link
                 to={`/countries/${c.name.common}`}
               >{`${c.name.common}`}</Link></TableCell> */}
-            <Button
-              onClick={() => {
-                handleOpen()
-                setModaldata(c)
-              }}
-            >
-              {c.name.common}
-            </Button>
+            <TableCell>
+              <img
+                src={c.flags.png}
+                alt={`flag of ${c.name.common}`}
+                width={'30%'}
+                height={'30%'}
+              />
+            </TableCell>
+            <TableCell>
+              <Button
+                onClick={() => {
+                  handleOpen()
+                  setModaldata(c)
+                }}
+              >
+                {c.name.common}
+              </Button>
+            </TableCell>
             <TableCell>{`Population: ${c.population} people`}</TableCell>
             <TableCell>
               <Button
                 variant="outlined"
-                color="error"
                 onClick={() => dispatch(addCountry(c))}
               >
-                Add to cart
+                Add to Cart <AddShoppingCart />
               </Button>
             </TableCell>
           </TableRow>

@@ -12,17 +12,21 @@ export enum DialogType {
 }
 
 export type CountryName = {
-  common: string,
+  common: string
   official: string
 }
 
 export type Country = {
   name: {
-    common: string,
-    official: string,
+    common: string
+    official: string
     nativeName: CountryName[]
   }
   population: number
+  flags: {
+    png: string
+    svg: string
+  }
 }
 
 export type AddCountryAction = {

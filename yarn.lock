@@ -964,7 +964,7 @@
     "core-js-pure" "^3.0.0"
     "regenerator-runtime" "^0.13.4"
 
-"@babel/runtime@^7.0.0", "@babel/runtime@^7.1.2", "@babel/runtime@^7.12.5", "@babel/runtime@^7.17.2", "@babel/runtime@^7.18.3", "@babel/runtime@^7.3.4", "@babel/runtime@^7.4.5", "@babel/runtime@^7.5.1", "@babel/runtime@^7.5.5", "@babel/runtime@^7.6.3", "@babel/runtime@^7.7.4", "@babel/runtime@^7.8.4", "@babel/runtime@^7.8.7":
+"@babel/runtime@^7.0.0", "@babel/runtime@^7.1.2", "@babel/runtime@^7.12.5", "@babel/runtime@^7.17.2", "@babel/runtime@^7.18.3", "@babel/runtime@^7.18.9", "@babel/runtime@^7.3.4", "@babel/runtime@^7.4.5", "@babel/runtime@^7.5.1", "@babel/runtime@^7.5.5", "@babel/runtime@^7.6.3", "@babel/runtime@^7.7.4", "@babel/runtime@^7.8.4", "@babel/runtime@^7.8.7":
   "integrity" "sha512-lkqXDcvlFT5rvEjiu6+QYO+1GXrEHRo2LOtS7E4GtX5ESIZOgepqsZBVIj6Pv+a6zqsya9VCgiK1KAK4BvJDAw=="
   "resolved" "https://registry.npmjs.org/@babel/runtime/-/runtime-7.18.9.tgz"
   "version" "7.18.9"
@@ -1346,6 +1346,13 @@
   "integrity" "sha512-1guoGvL3QZ7VjA3y9zye9Rpm+jz18rVZIo3AauTGyW5ntDMxr/cR0M18nuc/NH2KqpMt+coh4NwPEO1uPuKM5w=="
   "resolved" "https://registry.npmjs.org/@mui/core-downloads-tracker/-/core-downloads-tracker-5.10.2.tgz"
   "version" "5.10.2"
+
+"@mui/icons-material@^5.10.3":
+  "integrity" "sha512-o0kbUlsWCBtCE0wP33cGKbyryCh7kpm2EECYMPDmWrLhbA+HUODXIdhiTFS26szp2xXo9HY1lEx0ufeJ+tddYw=="
+  "resolved" "https://registry.npmjs.org/@mui/icons-material/-/icons-material-5.10.3.tgz"
+  "version" "5.10.3"
+  dependencies:
+    "@babel/runtime" "^7.18.9"
 
 "@mui/material@^5.10.2":
   "integrity" "sha512-ay43fuQLXROXkxFd6tqbj394Hu8BlbmpCdEDFtAisijulla2ZLfQa24pjhdX+56HrHReB3cZsf/sRq+DSfIgiA=="

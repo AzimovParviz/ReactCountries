@@ -8,7 +8,9 @@ export const useCountry = () => {
   useEffect(() => {
     const fetchCountry = async () => {
       try {
-        const response: any = await fetch(`https://restcountries.com/v3.1/all?fields=name,population`)
+        const response: any = await fetch(
+          `https://restcountries.com/v3.1/all?fields=name,population,flags`
+        )
         const jsonResponse: any = await response.json()
         setCountry(jsonResponse)
         setError(false)
