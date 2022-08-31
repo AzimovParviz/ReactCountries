@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'
 import { BrowserRouter as Router } from 'react-router-dom'
 
 import App from './App'
-import { ThemeProvider } from './context/ThemeContext'
+import { ThemeProvider } from './context/ThemeProvider'
 import * as serviceWorker from './serviceWorker'
 import makeStore from './redux/store'
 

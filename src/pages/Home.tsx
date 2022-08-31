@@ -9,7 +9,7 @@ import { AppState } from '../types'
 import ShoppingCart from '@mui/icons-material/ShoppingCart'
 import Brightness4Icon from '@mui/icons-material/Brightness4'
 import Brightness7Icon from '@mui/icons-material/Brightness7'
-import { ThemeContext } from '../context/ThemeContext'
+import { ThemeContext } from '../context/ThemeProvider'
 import Button from '@mui/material/Button'
 
 /*
