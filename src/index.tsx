@@ -4,17 +4,20 @@ import { Provider } from 'react-redux'
 import { BrowserRouter as Router } from 'react-router-dom'
 
 import App from './App'
+import { ThemeProvider } from './context/ThemeContext'
 import * as serviceWorker from './serviceWorker'
 import makeStore from './redux/store'
 
 const store = makeStore()
 
 const WithProvider = () => (
-  <Provider store={store}>
-    <Router>
-      <App />
-    </Router>
-  </Provider>
+  <ThemeProvider>
+    <Provider store={store}>
+      <Router>
+        <App />
+      </Router>
+    </Provider>
+  </ThemeProvider>
 )
 
 ReactDOM.render(<WithProvider />, document.getElementById('root'))
