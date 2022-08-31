@@ -3,11 +3,13 @@ import {
   CountryActions,
   ADD_COUNTRY,
   REMOVE_COUNTRY,
+  INIT_COUNTRY,
 } from '../../types'
 
 export default function country(
   state: CountryState = {
     inCart: [],
+    exists: [],
   },
   action: CountryActions
 ): CountryState {
@@ -30,6 +32,12 @@ export default function country(
       return { ...state, inCart: [...state.inCart] }
     }
     return state
+  }
+
+  case INIT_COUNTRY: {
+    const { country } = action.payload
+    console.log('countries exist', country)
+    return { ...state, exists: [...state.exists, country] }
   }
 
   default:

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-/* import { Link } from 'react-router-dom' */
+import { Link } from 'react-router-dom'
 import {
   Button,
   TableContainer,
@@ -39,9 +39,11 @@ export default function CountryTable(props: TableProps) {
         )}
         {props.countries?.map((c: Country) => (
           <TableRow key={c.name.common}>
-            {/* <TableCell><Link
+            <TableCell>
+              <Link
                 to={`/countries/${c.name.common}`}
-              >{`${c.name.common}`}</Link></TableCell> */}
+              >{`${c.name.common}`}</Link>
+            </TableCell>
             <TableCell>
               <img
                 src={c.flags.png}
@@ -57,7 +59,7 @@ export default function CountryTable(props: TableProps) {
                   setModaldata(c)
                 }}
               >
-                {c.name.common}
+                {c.name.official}
               </Button>
             </TableCell>
             <TableCell>{`Population: ${c.population} people`}</TableCell>

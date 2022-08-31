@@ -2,6 +2,7 @@ import {
   CountryActions,
   ADD_COUNTRY,
   REMOVE_COUNTRY,
+  INIT_COUNTRY,
   Country,
 } from '../../types'
 
@@ -17,6 +18,15 @@ export function addCountry(country: Country): CountryActions {
 export function removeCountry(country: Country): CountryActions {
   return {
     type: REMOVE_COUNTRY,
+    payload: {
+      country,
+    },
+  }
+}
+
+export function initCountry(country: Country): CountryActions {
+  return {
+    type: INIT_COUNTRY,
     payload: {
       country,
     },

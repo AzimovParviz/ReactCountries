@@ -7,6 +7,7 @@ import createRootReducer from './reducers'
 const initState: AppState = {
   country: {
     inCart: [],
+    exists: [],
   },
   ui: {
     dialogOpen: {},

@@ -14,13 +14,16 @@ import Button from '@mui/material/Button'
 
 /*
 TODO:
-remove from cart button / theme switching / filtering
+filtering, page for each country that a user can link to, infinite scrolling
  */
 
 export default function Home() {
   const { theme, toggleTheme } = useContext(ThemeContext)
   const { countries, error } = useCountry()
+  const countriesExist = useSelector((state: AppState) => state.country.exists)
+  console.log(countriesExist)
   const countriesCart = useSelector((state: AppState) => state.country.inCart)
+  /*   const filter: Country[] = [] //for search filtering and/or infinite scrolling */
   return (
     <>
       <h1>Home page</h1>
@@ -33,7 +36,7 @@ export default function Home() {
         {theme === 'light' ? <Brightness4Icon /> : <Brightness7Icon />} mode
       </Button>
       {/*       <SearchBar /> */}
-      {countries && <CountryTable countries={countries} />}
+      {countriesExist && <CountryTable countries={countries} />}
     </>
   )
 }

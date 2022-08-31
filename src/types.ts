@@ -3,6 +3,7 @@ import Country from './pages/Country'
 // Action types
 export const ADD_COUNTRY = 'ADD_COUNTRY'
 export const REMOVE_COUNTRY = 'REMOVE_COUNTRY'
+export const INIT_COUNTRY = 'INIT_COUNTRY'
 export const TOGGLE_DIALOG = 'TOGGLE_DIALOG'
 
 // Enum
@@ -43,6 +44,13 @@ export type RemoveCountryAction = {
   }
 }
 
+export type InitCountryAction = {
+  type: typeof INIT_COUNTRY
+  payload: {
+    country: Country
+  }
+}
+
 export type ToggleDialogAction = {
   type: typeof TOGGLE_DIALOG
   payload: {
@@ -53,10 +61,14 @@ export type ToggleDialogAction = {
 export type UiActions = ToggleDialogAction
 
 // Use this union in reducer
-export type CountryActions = AddCountryAction | RemoveCountryAction
+export type CountryActions =
+  | AddCountryAction
+  | RemoveCountryAction
+  | InitCountryAction
 
 export type CountryState = {
   inCart: Country[]
+  exists: Country[]
 }
 
 // Using dynamic keys from an enum

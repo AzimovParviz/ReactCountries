@@ -2,7 +2,10 @@ import React from 'react'
 import { createContext, useState } from 'react'
 
 type Theme = 'light' | 'dark'
-type ThemeContext = { theme: Theme; toggleTheme: () => void }
+type ThemeContext = {
+  theme: Theme
+  toggleTheme: () => void
+}
 
 export const ThemeContext = createContext<ThemeContext>({} as ThemeContext)
 
