@@ -1,13 +1,8 @@
 import React from 'react'
 import { createContext, useState } from 'react'
+import { ThemeContext, Theme } from '../types'
 
-type Theme = 'light' | 'dark'
-type ThemeContext = {
-  theme: Theme
-  toggleTheme: () => void
-}
-
-export const ThemeContext = createContext<ThemeContext>({} as ThemeContext)
+export const ThemeContextW = createContext<ThemeContext>({} as ThemeContext)
 
 export const ThemeProvider: React.FC = ({ children }) => {
   const [theme, setTheme] = useState<Theme>('light')
@@ -22,8 +17,8 @@ export const ThemeProvider: React.FC = ({ children }) => {
   document.body.style.backgroundColor = backgroundColor
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+    <ThemeContextW.Provider value={{ theme, toggleTheme }}>
       {children}
-    </ThemeContext.Provider>
+    </ThemeContextW.Provider>
   )
 }

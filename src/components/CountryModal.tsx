@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Box, Typography, Modal } from '@mui/material/'
-import { Country } from '../types'
+import { ModalData } from '../types'
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -12,12 +12,6 @@ const style = {
   border: '2px solid #000',
   boxShadow: 24,
   p: 4,
-}
-
-type ModalData = {
-  country: Country
-  open: boolean
-  handleClose: () => void
 }
 
 export default function CountryModal(data: ModalData) {

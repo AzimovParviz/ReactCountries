@@ -12,6 +12,14 @@ export enum DialogType {
   SignUp = 'signUp',
 }
 
+export enum Region {
+  Europe = 'Europe',
+  Asia = 'Asia',
+  Africa = 'Africa',
+  Americas = 'Americas',
+  Oceania = 'Oceania',
+}
+
 export type CountryName = {
   common: string
   official: string
@@ -28,6 +36,8 @@ export type Country = {
     png: string
     svg: string
   }
+  /*   languages: { [key: string]: string }, */
+  region: string
 }
 
 export type AddCountryAction = {
@@ -82,3 +92,26 @@ export type AppState = {
   country: CountryState
   ui: UiState
 }
+
+//Theme types
+export type Theme = 'light' | 'dark'
+export type ThemeContext = {
+  theme: Theme
+  toggleTheme: () => void
+}
+
+//Component props types
+
+export type ModalData = {
+  country: Country
+  open: boolean
+  handleClose: () => void
+}
+
+export type SearchBarProps = {
+  handleNameChange: React.ChangeEventHandler<HTMLInputElement>
+  handleLangChange: React.ChangeEventHandler<HTMLInputElement>
+  handleRegChange: React.ChangeEventHandler<HTMLSelectElement>
+}
+
+//Regions for region select filter

@@ -1,31 +1,30 @@
 import React from 'react'
-
-type SearchBarProps = {
-  nameTerm: string
-  langTerm: string
-  handleNameChange: () => void
-  handleLangChange: () => void
-}
+import { SearchBarProps } from '../types'
 
 export default function SearchBar(props: SearchBarProps) {
   return (
-    <form>
+    <div className="searchBar">
       <input
         type="text"
-        placeholder="country common name"
-        onChange={props.handleLangChange}
+        placeholder="Enter a country's name"
+        onChange={props.handleNameChange}
       />
       <input
         type="text"
         placeholder="spoken language"
         onChange={props.handleLangChange}
       />
-      {/* Europe Asia American Oceania Africa */}
-      {
-        {
-          /* independent: true false */
-        }
-      }
-    </form>
+      <select onChange={props.handleRegChange}>
+        <option hidden disabled selected>
+          {' '}
+          -- select an option --{' '}
+        </option>
+        <option value="Americas">Americas</option>
+        <option value="Europe">Europe</option>
+        <option value="Africa">Africa</option>
+        <option value="Asia">Asia</option>
+        <option value="Ocenia">Oceania</option>
+      </select>
+    </div>
   )
 }

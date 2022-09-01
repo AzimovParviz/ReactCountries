@@ -63,6 +63,8 @@ export default function CountryTable(props: TableProps) {
               </Button>
             </TableCell>
             <TableCell>{`Population: ${c.population} people`}</TableCell>
+            {/*             <TableCell>Spoken languages: {c.languages}</TableCell> */}
+            <TableCell>Located in: {c.region}</TableCell>
             <TableCell>
               <Button
                 variant="outlined"
