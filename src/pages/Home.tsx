@@ -1,4 +1,4 @@
-import React, { MutableRefObject, useContext, useRef, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import { useCountry } from '../hooks/useCountry'
@@ -25,14 +25,9 @@ export default function Home() {
   const { theme, toggleTheme } = useContext(ThemeContextW)
   const { countries, error } = useCountry()
   const countriesCart = useSelector((state: AppState) => state.country.inCart)
-  const formRef = useRef() as MutableRefObject<HTMLFormElement> //for resetting the form fields
 
   let filtered = countries //for search filtering and/or infinite scrolling
   if (langterm) filtered = filtered.filter((c) => c) //for future implementation of filtering by language
-
-  const handleReset = () => {
-    formRef.current?.reset()
-  }
 
   if (nameterm) filtered = filtered.filter((c) => c.name.common === nameterm)
   if (regterm)
@@ -44,12 +39,13 @@ export default function Home() {
       <Link to={'/Cart'}>
         <ShoppingCart /> [{countriesCart.length}]
       </Link>
-      <Button onClick={toggleTheme}>
+      <Button variant="contained" onClick={toggleTheme}>
         Switch to{' '}
         {theme === 'light' ? <Brightness4Icon /> : <Brightness7Icon />} mode
       </Button>
       <form>
         <SearchBar
+          nameInput={nameterm}
           handleLangChange={(e) =>
             setLangterm((e.target as HTMLInputElement).value)
           }
@@ -69,7 +65,6 @@ export default function Home() {
           setLangterm('')
           setNameterm('')
           setRegterm(null)
-          handleReset()
         }}
       >
         RESET

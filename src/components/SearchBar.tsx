@@ -1,12 +1,14 @@
 import React from 'react'
-import { SearchBarProps } from '../types'
+import { Region, SearchBarProps } from '../types'
 
 export default function SearchBar(props: SearchBarProps) {
+  const optionValues = Region
   return (
     <div className="searchBar">
       <input
         type="text"
         placeholder="Enter a country's name"
+        value={props.nameInput}
         onChange={props.handleNameChange}
       />
       <input
@@ -19,11 +21,11 @@ export default function SearchBar(props: SearchBarProps) {
           {' '}
           -- select an option --{' '}
         </option>
-        <option value="Americas">Americas</option>
-        <option value="Europe">Europe</option>
-        <option value="Africa">Africa</option>
-        <option value="Asia">Asia</option>
-        <option value="Ocenia">Oceania</option>
+        <option value={optionValues.Americas}>Americas</option>
+        <option value={optionValues.Europe}>Europe</option>
+        <option value={optionValues.Africa}>Africa</option>
+        <option value={optionValues.Asia}>Asia</option>
+        <option value={optionValues.Oceania}>Oceania</option>
       </select>
     </div>
   )
