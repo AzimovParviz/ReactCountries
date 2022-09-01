@@ -4,7 +4,8 @@
   "rules" : {
      "indent": ["error", 2],
      "no-unused-vars": ["error"],
-     "react/jsx-uses-react": "error",   
-     "react/jsx-uses-vars": "error"
+     "react/jsx-uses-react": "error",
+     "react/jsx-uses-vars": "error",
+     "jsx-a11y/no-onchange": 0
    }
 }
