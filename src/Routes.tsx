@@ -8,7 +8,7 @@ import Cart from './pages/Cart'
 const Routes = () => (
   <Switch>
     <Route exact path="/" component={Home} />
-    <Route exact path="/country/:id" component={Country} />
+    <Route exact path="/countries/:id" component={Country} />
     <Route exact path="/cart" component={Cart} />
   </Switch>
 )

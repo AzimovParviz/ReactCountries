@@ -119,4 +119,8 @@ export type SearchBarProps = {
   handleRegChange: React.ChangeEventHandler<HTMLSelectElement>
 }
 
+export type TableProps = {
+  countries: Country[]
+  /*     loading: boolean */
+}
 //Regions for region select filter

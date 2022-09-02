@@ -3,7 +3,6 @@ import { Region, SearchBarProps } from '../types'
 
 export default function SearchBar(props: SearchBarProps) {
   const optionValues = Region
-  console.log('reg term prop', props.regInput)
   return (
     <div className="searchBar">
       <input

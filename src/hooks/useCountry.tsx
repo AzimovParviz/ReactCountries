@@ -15,7 +15,10 @@ export const useCountry = () => {
           `https://restcountries.com/v3.1/all?fields=name,population,flags,region`
         )
         const jsonResponse: any = await response.json()
-        dispatch(initCountry(jsonResponse))
+        /*         dispatch(initCountry(jsonResponse)) */
+        jsonResponse.forEach((element: Country) => {
+          dispatch(initCountry(element))
+        })
         setCountry(jsonResponse)
         setError(false)
       } catch (_) {

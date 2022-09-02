@@ -36,7 +36,6 @@ export default function country(
 
   case INIT_COUNTRY: {
     const { country } = action.payload
-    console.log('countries exist', country)
     return { ...state, exists: [...state.exists, country] }
   }
 

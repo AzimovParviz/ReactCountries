@@ -11,16 +11,14 @@ export default function Country() {
     state.country.exists.find((c) => c.name.common === id)
   )
 
-  console.log('country asked for is', id)
-
   if (!country) {
-    return <div>country not found</div>
+    return <div>country does not exist</div>
   }
 
   return (
     <>
       <h1>country page</h1>
-      <h2>{`${country.name}, there are ${country.population} people living there`}</h2>
+      <h2>{`${country.name.official}, there are ${country.population} people living there`}</h2>
     </>
   )
 }

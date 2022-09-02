@@ -10,7 +10,6 @@ import { removeCountry } from '../redux/actions/country'
 export default function Cart() {
   const countries = useSelector((state: AppState) => state.country.inCart)
   const dispatch = useDispatch()
-  console.log('cart is', countries)
   return (
     <>
       {countries.length <= 0 && <p>cart is empty</p>}
