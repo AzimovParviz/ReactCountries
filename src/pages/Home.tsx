@@ -21,7 +21,7 @@ filtering by language, page for each country that a user can link to, infinite s
 export default function Home() {
   const [langterm, setLangterm] = useState<string>('')
   const [nameterm, setNameterm] = useState<string>('')
-  const [regterm, setRegterm] = useState<Region | null>()
+  const [regterm, setRegterm] = useState<Region>(Region.empty)
   const { theme, toggleTheme } = useContext(ThemeContextW)
   const { countries, error } = useCountry()
   const countriesCart = useSelector((state: AppState) => state.country.inCart)
@@ -46,6 +46,7 @@ export default function Home() {
       <form>
         <SearchBar
           nameInput={nameterm}
+          regInput={regterm?.toString()}
           handleLangChange={(e) =>
             setLangterm((e.target as HTMLInputElement).value)
           }
@@ -64,7 +65,7 @@ export default function Home() {
         onClick={() => {
           setLangterm('')
           setNameterm('')
-          setRegterm(null)
+          setRegterm(Region.empty)
         }}
       >
         RESET

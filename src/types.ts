@@ -13,6 +13,7 @@ export enum DialogType {
 }
 
 export enum Region {
+  empty = '',
   Americas = 'Americas',
   Europe = 'Europe',
   Africa = 'Africa',
@@ -111,6 +112,7 @@ export type ModalData = {
 export type SearchBarProps = {
   //input values
   nameInput: string
+  regInput?: string
   //onChange events
   handleNameChange: React.ChangeEventHandler<HTMLInputElement>
   handleLangChange: React.ChangeEventHandler<HTMLInputElement>

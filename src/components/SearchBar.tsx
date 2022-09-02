@@ -3,6 +3,7 @@ import { Region, SearchBarProps } from '../types'
 
 export default function SearchBar(props: SearchBarProps) {
   const optionValues = Region
+  console.log('reg term prop', props.regInput)
   return (
     <div className="searchBar">
       <input
@@ -16,8 +17,8 @@ export default function SearchBar(props: SearchBarProps) {
         placeholder="spoken language"
         onChange={props.handleLangChange}
       />
-      <select onChange={props.handleRegChange}>
-        <option hidden disabled selected>
+      <select onChange={props.handleRegChange} value={props.regInput}>
+        <option disabled hidden value={optionValues.empty}>
           {' '}
           -- select an option --{' '}
         </option>
