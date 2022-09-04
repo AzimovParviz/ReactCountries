@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import {
@@ -22,8 +22,36 @@ export default function CountryTable(props: TableProps) {
   const dispatch = useDispatch()
   const [open, setOpen] = useState(false)
   const [modaldata, setModaldata] = useState<Country | null>()
+  const [countries, setCountries] = useState<Country[] | null>()
+  const [byName, setByName] = useState(props.countries)
+  const [byPopulation, setByPopulation] = useState(props.countries)
+
+  useEffect(() => {
+    setCountries(props.countries)
+  }, [props.countries])
+
+  useEffect(() => {
+    setCountries(byName)
+  }, [byName])
+
+  useEffect(() => {
+    setCountries(byPopulation)
+  }, [byPopulation])
+
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
+
+  const handleNameSort = () => {
+    setByName(
+      countries!.sort((a, b) => a.name.common.localeCompare(b.name.common))
+    )
+    console.log('sorted', countries)
+  }
+
+  const handlePopSort = () => {
+    setByPopulation(countries!.sort(compareNum))
+    console.log('sorted', countries)
+  }
 
   return (
     <TableContainer>
@@ -37,16 +65,20 @@ export default function CountryTable(props: TableProps) {
         )}
         <TableHead>
           <TableRow>
-            <TableCell>Name</TableCell>
+            <TableCell>
+              Name <Button onClick={() => handleNameSort()}>{'>'}</Button>
+            </TableCell>
             <TableCell align="left">Flag</TableCell>
             <TableCell align="left">Official name</TableCell>
-            <TableCell align="left">Population</TableCell>
+            <TableCell align="left">
+              Population <Button onClick={() => handlePopSort()}>{'>'}</Button>
+            </TableCell>
             <TableCell align="left">Location</TableCell>
             <TableCell align="left">Actions</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {props.countries?.map((c: Country) => (
+          {countries?.map((c: Country) => (
             <TableRow key={c.name.common}>
               <TableCell>
                 <Link
@@ -88,4 +120,10 @@ export default function CountryTable(props: TableProps) {
       </Table>
     </TableContainer>
   )
+}
+
+function compareNum(a: Country, b: Country) {
+  if (a.population < b.population) return -1
+  if (a.population > b.population) return 1
+  return 0
 }
