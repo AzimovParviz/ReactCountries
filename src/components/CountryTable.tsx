@@ -25,6 +25,7 @@ export default function CountryTable(props: TableProps) {
   const [countries, setCountries] = useState<Country[] | null>()
   const [byName, setByName] = useState(props.countries)
   const [byPopulation, setByPopulation] = useState(props.countries)
+  const [order, setOrder] = useState<'asc' | 'desc'>('asc')
 
   useEffect(() => {
     setCountries(props.countries)
@@ -41,7 +42,9 @@ export default function CountryTable(props: TableProps) {
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
 
-  const handleNameSort = () => {
+  console.log(order)
+
+  /* const handleNameSort = () => {
     setByName(
       countries!.sort((a, b) => a.name.common.localeCompare(b.name.common))
     )
@@ -49,9 +52,9 @@ export default function CountryTable(props: TableProps) {
   }
 
   const handlePopSort = () => {
-    setByPopulation(countries!.sort(compareNum))
+    setByPopulation(countries!.sort(compareNumAsc))
     console.log('sorted', countries)
-  }
+  } */
 
   return (
     <TableContainer>
@@ -66,12 +69,42 @@ export default function CountryTable(props: TableProps) {
         <TableHead>
           <TableRow>
             <TableCell>
-              Name <Button onClick={() => handleNameSort()}>{'>'}</Button>
+              Name{' '}
+              <Button
+                onClick={() => {
+                  if (order === 'asc') setOrder('desc')
+                  else setOrder('asc')
+                  order === 'asc'
+                    ? setByName(
+                        countries!.sort((a, b) =>
+                          a.name.common.localeCompare(b.name.common)
+                        )
+                    )
+                    : setByName(
+                        countries!.sort((a, b) =>
+                          b.name.common.localeCompare(a.name.common)
+                        )
+                    )
+                }}
+              >
+                {'>'}
+              </Button>
             </TableCell>
             <TableCell align="left">Flag</TableCell>
             <TableCell align="left">Official name</TableCell>
             <TableCell align="left">
-              Population <Button onClick={() => handlePopSort()}>{'>'}</Button>
+              Population{' '}
+              <Button
+                onClick={() => {
+                  if (order === 'asc') setOrder('desc')
+                  else setOrder('asc')
+                  order === 'asc'
+                    ? setByPopulation(countries!.sort(compareNumAsc))
+                    : setByPopulation(countries!.sort(compareNumDesc))
+                }}
+              >
+                {'>'}
+              </Button>
             </TableCell>
             <TableCell align="left">Location</TableCell>
             <TableCell align="left">Actions</TableCell>
@@ -122,8 +155,16 @@ export default function CountryTable(props: TableProps) {
   )
 }
 
-function compareNum(a: Country, b: Country) {
+function compareNumDesc(a: Country, b: Country) {
+  console.log('descending order')
   if (a.population < b.population) return -1
   if (a.population > b.population) return 1
+  return 0
+}
+
+function compareNumAsc(a: Country, b: Country) {
+  console.log('ascending order')
+  if (b.population < a.population) return -1
+  if (b.population > a.population) return 1
   return 0
 }
