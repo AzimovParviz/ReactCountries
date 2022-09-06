@@ -121,6 +121,7 @@ export type SearchBarProps = {
 
 export type TableProps = {
   countries: Country[]
+  isCart: boolean
   /*     loading: boolean */
 }
 //Regions for region select filter

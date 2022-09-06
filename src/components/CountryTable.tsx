@@ -16,6 +16,7 @@ import CountryModal from './CountryModal'
 
 import { Country, TableProps } from '../types'
 import { addCountry } from '../redux/actions/country'
+import { RemoveShoppingCart } from '@mui/icons-material'
 /* TODO: loading icon and loading state passing as props */
 
 export default function CountryTable(props: TableProps) {
@@ -43,18 +44,6 @@ export default function CountryTable(props: TableProps) {
   const handleClose = () => setOpen(false)
 
   console.log(order)
-
-  /* const handleNameSort = () => {
-    setByName(
-      countries!.sort((a, b) => a.name.common.localeCompare(b.name.common))
-    )
-    console.log('sorted', countries)
-  }
-
-  const handlePopSort = () => {
-    setByPopulation(countries!.sort(compareNumAsc))
-    console.log('sorted', countries)
-  } */
 
   return (
     <TableContainer>
@@ -140,12 +129,22 @@ export default function CountryTable(props: TableProps) {
               {/*             <TableCell>Spoken languages: {c.languages}</TableCell> */}
               <TableCell>Located in: {c.region}</TableCell>
               <TableCell>
-                <Button
-                  variant="outlined"
-                  onClick={() => dispatch(addCountry(c))}
-                >
-                  Add to Cart <AddShoppingCart />
-                </Button>
+                {!props.isCart && (
+                  <Button
+                    variant="outlined"
+                    onClick={() => dispatch(addCountry(c))}
+                  >
+                    Add to Cart <AddShoppingCart />
+                  </Button>
+                )}
+                {props.isCart && (
+                  <Button
+                    variant="outlined"
+                    onClick={() => dispatch(addCountry(c))}
+                  >
+                    Remove from Cart <RemoveShoppingCart />
+                  </Button>
+                )}
               </TableCell>
             </TableRow>
           ))}

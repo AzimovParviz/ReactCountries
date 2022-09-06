@@ -70,7 +70,7 @@ export default function Home() {
       >
         RESET
       </Button>
-      {filtered && <CountryTable countries={filtered} />}
+      {filtered && <CountryTable countries={filtered} isCart={false} />}
     </>
   )
 }
