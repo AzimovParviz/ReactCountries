@@ -22,8 +22,8 @@ import { RemoveShoppingCart } from '@mui/icons-material'
 export default function CountryTable(props: TableProps) {
   const dispatch = useDispatch()
   const [open, setOpen] = useState(false)
-  const [modaldata, setModaldata] = useState<Country | null>()
-  const [countries, setCountries] = useState<Country[] | null>()
+  const [modaldata, setModaldata] = useState<Country | null>(null)
+  const [countries, setCountries] = useState<Country[] | null>(null)
   const [byName, setByName] = useState(props.countries)
   const [byPopulation, setByPopulation] = useState(props.countries)
   const [order, setOrder] = useState<'asc' | 'desc'>('asc')

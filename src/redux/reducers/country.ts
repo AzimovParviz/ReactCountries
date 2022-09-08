@@ -3,7 +3,8 @@ import {
   CountryActions,
   ADD_COUNTRY,
   REMOVE_COUNTRY,
-  INIT_COUNTRY,
+  INIT_COUNTRIES,
+  INIT_COUNTRIES_FAILED,
 } from '../../types'
 
 export default function country(
@@ -34,9 +35,13 @@ export default function country(
     return state
   }
 
-  case INIT_COUNTRY: {
-    const { country } = action.payload
-    return { ...state, exists: [...state.exists, country] }
+  case INIT_COUNTRIES: {
+    const { countries } = action.payload
+    return { ...state, exists: countries }
+  }
+
+  case INIT_COUNTRIES_FAILED: {
+    return state
   }
 
   default:

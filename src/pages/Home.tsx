@@ -15,12 +15,13 @@ import Button from '@mui/material/Button'
 
 /*
 TODO:
-filtering by language, page for each country that a user can link to, infinite scrolling, table sorting
+infinite scrolling, cart badge with a number that live updates, live search without the need of a reset button
+FOLLOW YAZAN'S SUGGESTIONS TO IMPROVE YOUR APP
  */
 
 export default function Home() {
-  const [langterm, setLangterm] = useState<string>('')
-  const [nameterm, setNameterm] = useState<string>('')
+  const [langterm, setLangterm] = useState('')
+  const [nameterm, setNameterm] = useState('')
   const [regterm, setRegterm] = useState<Region>(Region.empty)
   const { theme, toggleTheme } = useContext(ThemeContextW)
   const { countries, error } = useCountry()
@@ -29,9 +30,28 @@ export default function Home() {
   let filtered = countries //for search filtering and/or infinite scrolling
   if (langterm) filtered = filtered.filter((c) => c) //for future implementation of filtering by language
 
-  if (nameterm) filtered = filtered.filter((c) => c.name.common === nameterm)
+  if (nameterm)
+    filtered = filtered.filter((c) =>
+      c.name.common.toLowerCase().includes(nameterm.toLowerCase())
+    )
   if (regterm)
     filtered = filtered.filter((c) => c.region === regterm.toString())
+
+  const handleChange = (e: any, term: string) => {
+    switch (term) {
+    case 'lang':
+      setLangterm((e.target as HTMLInputElement).value)
+      break
+    case 'name':
+      setNameterm((e.target as HTMLInputElement).value)
+      break
+    case 'region':
+      setRegterm((e.target as HTMLSelectElement).value as Region)
+      break
+    default:
+      break
+    }
+  }
   return (
     <>
       <h1>Home page</h1>
@@ -47,15 +67,9 @@ export default function Home() {
         <SearchBar
           nameInput={nameterm}
           regInput={regterm?.toString()}
-          handleLangChange={(e) =>
-            setLangterm((e.target as HTMLInputElement).value)
-          }
-          handleNameChange={(e) =>
-            setNameterm((e.target as HTMLInputElement).value)
-          }
-          handleRegChange={(e) =>
-            setRegterm((e.target as HTMLSelectElement).value as Region)
-          }
+          handleLangChange={(e) => handleChange(e, 'lang')}
+          handleNameChange={(e) => handleChange(e, 'name')}
+          handleRegChange={(e) => handleChange(e, 'region')}
         />
       </form>
       <Button

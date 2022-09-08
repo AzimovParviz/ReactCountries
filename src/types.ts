@@ -3,7 +3,8 @@ import Country from './pages/Country'
 // Action types
 export const ADD_COUNTRY = 'ADD_COUNTRY'
 export const REMOVE_COUNTRY = 'REMOVE_COUNTRY'
-export const INIT_COUNTRY = 'INIT_COUNTRY'
+export const INIT_COUNTRIES = 'INIT_COUNTRIES'
+export const INIT_COUNTRIES_FAILED = 'INIT_COUNTRIES_FAILED'
 export const TOGGLE_DIALOG = 'TOGGLE_DIALOG'
 
 // Enum
@@ -56,9 +57,16 @@ export type RemoveCountryAction = {
 }
 
 export type InitCountryAction = {
-  type: typeof INIT_COUNTRY
+  type: typeof INIT_COUNTRIES
   payload: {
-    country: Country
+    countries: Country[]
+  }
+}
+
+export type initCountriesFailed = {
+  type: typeof INIT_COUNTRIES_FAILED
+  payload: {
+    countries: Country[]
   }
 }
 
@@ -76,22 +84,15 @@ export type CountryActions =
   | AddCountryAction
   | RemoveCountryAction
   | InitCountryAction
+  | initCountriesFailed
 
 export type CountryState = {
   inCart: Country[]
   exists: Country[]
 }
 
-// Using dynamic keys from an enum
-export type UiState = {
-  dialogOpen: {
-    [key in DialogType]?: boolean
-  }
-}
-
 export type AppState = {
   country: CountryState
-  ui: UiState
 }
 
 //Theme types

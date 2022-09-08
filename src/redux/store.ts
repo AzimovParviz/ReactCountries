@@ -9,9 +9,6 @@ const initState: AppState = {
     inCart: [],
     exists: [],
   },
-  ui: {
-    dialogOpen: {},
-  },
 }
 
 export default function makeStore(initialState = initState) {

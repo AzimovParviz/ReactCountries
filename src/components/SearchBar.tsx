@@ -11,15 +11,16 @@ export default function SearchBar(props: SearchBarProps) {
         value={props.nameInput}
         onChange={props.handleNameChange}
       />
+      {/*       
       <input
         type="text"
         placeholder="spoken language"
         onChange={props.handleLangChange}
-      />
+      /> */}
       <select onChange={props.handleRegChange} value={props.regInput}>
         <option disabled hidden value={optionValues.empty}>
           {' '}
-          -- select an option --{' '}
+          -- select the region --{' '}
         </option>
         <option value={optionValues.Americas}>Americas</option>
         <option value={optionValues.Europe}>Europe</option>

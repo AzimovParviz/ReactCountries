@@ -1,8 +1,10 @@
+import { Dispatch } from 'redux'
 import {
   CountryActions,
   ADD_COUNTRY,
   REMOVE_COUNTRY,
-  INIT_COUNTRY,
+  INIT_COUNTRIES,
+  INIT_COUNTRIES_FAILED,
   Country,
 } from '../../types'
 
@@ -24,22 +26,35 @@ export function removeCountry(country: Country): CountryActions {
   }
 }
 
-export function initCountry(country: Country): CountryActions {
+export function initCountries(countries: Country[]): CountryActions {
   return {
-    type: INIT_COUNTRY,
+    type: INIT_COUNTRIES,
     payload: {
-      country,
+      countries,
     },
   }
 }
-/* 
-// An Example of Async action processed by redux-thunk middleware
-export function fetchProduct(productId: string) {
-    return (dispatch: Dispatch) => {
-      return fetch(`products/${productId}`)
-        .then(resp => resp.json())
-        .then(product => {
-          dispatch(addProduct(product))
-        })
+
+export function initCountriesFailed(countries: Country[]): CountryActions {
+  return {
+    type: INIT_COUNTRIES_FAILED,
+    payload: {
+      countries,
+    },
+  }
+}
+
+export function fetchCountries() {
+  return async (dispatch: Dispatch) => {
+    try {
+      const response: any = await fetch(
+        `https://restcountries.com/v3.1/all?fields=name,population,flags,region`
+      )
+      const countries: Country[] = await response.json()
+
+      dispatch(initCountries(countries))
+    } catch (_) {
+      //dispatch(initCountriesFailed())
     }
-  } */
+  }
+}
