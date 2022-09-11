@@ -12,9 +12,15 @@ export const ThemeProvider: React.FC = ({ children }) => {
 
   const color = theme === 'light' ? '#333' : '#FFF'
   const backgroundColor = theme === 'light' ? '#FFF' : '#333'
+  const webkitTextFillColor = theme === 'light' ? '#333' : '#FFF'
 
   document.body.style.color = color
   document.body.style.backgroundColor = backgroundColor
+  document.body.style.webkitTextFillColor = webkitTextFillColor
+  var all = document.getElementsByTagName('a')
+  for (var i = 0, max = all.length; i < max; i++) {
+    all[i].style.color = theme === 'light' ? 'blue' : 'orange'
+  }
 
   return (
     <ThemeContextW.Provider value={{ theme, toggleTheme }}>

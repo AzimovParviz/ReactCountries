@@ -58,6 +58,15 @@ export default function Home() {
       {error && <p>{error}</p>}
       <Header>
         <h1>Home page</h1>
+        <form>
+          <SearchBar
+            nameInput={nameterm}
+            regInput={regterm?.toString()}
+            handleLangChange={(e) => handleChange(e, 'lang')}
+            handleNameChange={(e) => handleChange(e, 'name')}
+            handleRegChange={(e) => handleChange(e, 'region')}
+          />
+        </form>
         <span>
           <Button color="primary" variant="outlined" onClick={toggleTheme}>
             {theme === 'light' ? (
@@ -71,15 +80,6 @@ export default function Home() {
             <ShoppingCart /> [{countriesCart.length}]
           </Link>
         </span>
-        <form>
-          <SearchBar
-            nameInput={nameterm}
-            regInput={regterm?.toString()}
-            handleLangChange={(e) => handleChange(e, 'lang')}
-            handleNameChange={(e) => handleChange(e, 'name')}
-            handleRegChange={(e) => handleChange(e, 'region')}
-          />
-        </form>
       </Header>
       {filtered && <CountryTable countries={filtered} isCart={false} />}
     </>
