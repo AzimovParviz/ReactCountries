@@ -14,7 +14,11 @@ import AddShoppingCart from '@mui/icons-material/AddShoppingCart'
 
 import { Country, TableProps } from '../types'
 import { addCountry } from '../redux/actions/country'
-import { RemoveShoppingCart } from '@mui/icons-material'
+import {
+  RemoveShoppingCart,
+  KeyboardDoubleArrowDown,
+  KeyboardDoubleArrowUp,
+} from '@mui/icons-material'
 /* TODO: loading icon and loading state passing as props */
 
 export default function CountryTable(props: TableProps) {
@@ -62,7 +66,11 @@ export default function CountryTable(props: TableProps) {
                     )
                 }}
               >
-                {'>'}
+                {order === 'asc' ? (
+                  <KeyboardDoubleArrowUp />
+                ) : (
+                  <KeyboardDoubleArrowDown />
+                )}
               </Button>
             </TableCell>
             <TableCell align="left">Flag</TableCell>
@@ -78,7 +86,11 @@ export default function CountryTable(props: TableProps) {
                     : setByPopulation(countries!.sort(compareNumDesc))
                 }}
               >
-                {'>'}
+                {order === 'asc' ? (
+                  <KeyboardDoubleArrowUp />
+                ) : (
+                  <KeyboardDoubleArrowDown />
+                )}
               </Button>
             </TableCell>
             <TableCell align="left">Location</TableCell>
