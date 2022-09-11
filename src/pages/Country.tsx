@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { AppState } from '../types'
 import { Button } from '@mui/material'
-import { AddShoppingCart } from '@mui/icons-material'
-import { Card, CardMedia, CardHeader, CardContent } from '@mui/material'
+import { AddShoppingCart, KeyboardDoubleArrowLeft } from '@mui/icons-material'
+import { Card, CardHeader, CardContent } from '@mui/material'
 import { addCountry } from '../redux/actions/'
 
 export default function Country() {
@@ -28,22 +28,18 @@ export default function Country() {
   return (
     <div>
       <h1>country page</h1>
-      <Button onClick={() => history.goBack()}>Back to home</Button>
+      <Button onClick={() => history.goBack()}>
+        <KeyboardDoubleArrowLeft /> Back to home
+      </Button>
       <Card>
         <CardHeader
           style={{ backgroundColor: 'grey' }}
           title={country.name.common}
           subheader={country.region}
         />
-        <CardMedia
-          sx={{
-            width: '20%',
-            height: '20%',
-          }}
-          component={'img'}
-          image={country.flags.png}
-        />
         <CardContent style={{ backgroundColor: 'grey' }}>
+          <img src={country.flags.png} alt={`flag of ${country.name.common}`} />
+          <br></br>
           {`${country.name.official}, there are ${country.population} people living there`}
         </CardContent>
       </Card>
