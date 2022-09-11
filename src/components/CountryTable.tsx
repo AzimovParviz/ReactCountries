@@ -19,7 +19,6 @@ import {
   KeyboardDoubleArrowDown,
   KeyboardDoubleArrowUp,
 } from '@mui/icons-material'
-/* TODO: loading icon and loading state passing as props */
 
 export default function CountryTable(props: TableProps) {
   const dispatch = useDispatch()

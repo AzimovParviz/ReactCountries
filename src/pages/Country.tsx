@@ -30,7 +30,11 @@ export default function Country() {
       <h1>country page</h1>
       <Button onClick={() => history.goBack()}>Back to home</Button>
       <Card>
-        <CardHeader title={country.name.common} subheader={country.region} />
+        <CardHeader
+          style={{ backgroundColor: 'grey' }}
+          title={country.name.common}
+          subheader={country.region}
+        />
         <CardMedia
           sx={{
             width: '20%',
@@ -39,7 +43,7 @@ export default function Country() {
           component={'img'}
           image={country.flags.png}
         />
-        <CardContent>
+        <CardContent style={{ backgroundColor: 'grey' }}>
           {`${country.name.official}, there are ${country.population} people living there`}
         </CardContent>
       </Card>
