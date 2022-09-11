@@ -1,33 +1,33 @@
 import React from 'react'
+import { TextField, MenuItem, Select } from '@mui/material'
 import { Region, SearchBarProps } from '../types'
 
 export default function SearchBar(props: SearchBarProps) {
-  const optionValues = Region
+  const MenuItemValues = Region
   return (
     <div className="searchBar">
-      <input
+      <TextField
         type="text"
-        placeholder="Enter a country's name"
+        label="Country's name"
         value={props.nameInput}
+        variant="filled"
         onChange={props.handleNameChange}
       />
-      {/*       
-      <input
-        type="text"
-        placeholder="spoken language"
-        onChange={props.handleLangChange}
-      /> */}
-      <select onChange={props.handleRegChange} value={props.regInput}>
-        <option disabled hidden value={optionValues.empty}>
+      <Select
+        onChange={props.handleRegChange}
+        value={props.regInput}
+        label="Region"
+      >
+        <MenuItem selected value={MenuItemValues.empty}>
           {' '}
           -- select the region --{' '}
-        </option>
-        <option value={optionValues.Americas}>Americas</option>
-        <option value={optionValues.Europe}>Europe</option>
-        <option value={optionValues.Africa}>Africa</option>
-        <option value={optionValues.Asia}>Asia</option>
-        <option value={optionValues.Oceania}>Oceania</option>
-      </select>
+        </MenuItem>
+        <MenuItem value={MenuItemValues.Americas}>Americas</MenuItem>
+        <MenuItem value={MenuItemValues.Europe}>Europe</MenuItem>
+        <MenuItem value={MenuItemValues.Africa}>Africa</MenuItem>
+        <MenuItem value={MenuItemValues.Asia}>Asia</MenuItem>
+        <MenuItem value={MenuItemValues.Oceania}>Oceania</MenuItem>
+      </Select>
     </div>
   )
 }

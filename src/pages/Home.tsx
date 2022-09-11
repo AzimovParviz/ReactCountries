@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { useCountry } from '../hooks/useCountry'
 import CountryTable from '../components/CountryTable'
 import SearchBar from '../components/SearchBar'
+import Header from '../components/Header'
 import { useSelector } from 'react-redux'
 import { AppState, Region } from '../types'
 
@@ -54,36 +55,32 @@ export default function Home() {
   }
   return (
     <>
-      <h1>Home page</h1>
       {error && <p>{error}</p>}
-      <Link to={'/Cart'}>
-        <ShoppingCart /> [{countriesCart.length}]
-      </Link>
-      <Button variant="contained" onClick={toggleTheme}>
-        Switch to{' '}
-        {theme === 'light' ? <Brightness4Icon /> : <Brightness7Icon />} mode
-      </Button>
-      <form>
-        <SearchBar
-          nameInput={nameterm}
-          regInput={regterm?.toString()}
-          handleLangChange={(e) => handleChange(e, 'lang')}
-          handleNameChange={(e) => handleChange(e, 'name')}
-          handleRegChange={(e) => handleChange(e, 'region')}
-        />
-      </form>
-      <Button
-        className="button"
-        variant="outlined"
-        color="warning"
-        onClick={() => {
-          setLangterm('')
-          setNameterm('')
-          setRegterm(Region.empty)
-        }}
-      >
-        RESET
-      </Button>
+      <Header>
+        <h1>Home page</h1>
+        <span>
+          <Button color="primary" variant="outlined" onClick={toggleTheme}>
+            {theme === 'light' ? (
+              <Brightness4Icon sx={{ color: 'yellow' }} />
+            ) : (
+              <Brightness7Icon sx={{ color: 'darkblue' }} />
+            )}{' '}
+            mode
+          </Button>
+          <Link to={'/Cart'}>
+            <ShoppingCart /> [{countriesCart.length}]
+          </Link>
+        </span>
+        <form>
+          <SearchBar
+            nameInput={nameterm}
+            regInput={regterm?.toString()}
+            handleLangChange={(e) => handleChange(e, 'lang')}
+            handleNameChange={(e) => handleChange(e, 'name')}
+            handleRegChange={(e) => handleChange(e, 'region')}
+          />
+        </form>
+      </Header>
       {filtered && <CountryTable countries={filtered} isCart={false} />}
     </>
   )

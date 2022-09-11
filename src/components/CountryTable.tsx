@@ -12,8 +12,6 @@ import {
 } from '@mui/material/'
 import AddShoppingCart from '@mui/icons-material/AddShoppingCart'
 
-import CountryModal from './CountryModal'
-
 import { Country, TableProps } from '../types'
 import { addCountry } from '../redux/actions/country'
 import { RemoveShoppingCart } from '@mui/icons-material'
@@ -21,8 +19,6 @@ import { RemoveShoppingCart } from '@mui/icons-material'
 
 export default function CountryTable(props: TableProps) {
   const dispatch = useDispatch()
-  const [open, setOpen] = useState(false)
-  const [modaldata, setModaldata] = useState<Country | null>(null)
   const [countries, setCountries] = useState<Country[] | null>(null)
   const [byName, setByName] = useState(props.countries)
   const [byPopulation, setByPopulation] = useState(props.countries)
@@ -40,21 +36,11 @@ export default function CountryTable(props: TableProps) {
     setCountries(byPopulation)
   }, [byPopulation])
 
-  const handleOpen = () => setOpen(true)
-  const handleClose = () => setOpen(false)
-
   console.log(order)
 
   return (
     <TableContainer>
       <Table>
-        {modaldata && (
-          <CountryModal
-            country={modaldata}
-            handleClose={handleClose}
-            open={open}
-          />
-        )}
         <TableHead>
           <TableRow>
             <TableCell>
@@ -115,16 +101,7 @@ export default function CountryTable(props: TableProps) {
                   height={'30%'}
                 />
               </TableCell>
-              <TableCell>
-                <Button
-                  onClick={() => {
-                    handleOpen()
-                    setModaldata(c)
-                  }}
-                >
-                  {c.name.official}
-                </Button>
-              </TableCell>
+              <TableCell>{c.name.official}</TableCell>
               <TableCell>{`Population: ${c.population} people`}</TableCell>
               {/*             <TableCell>Spoken languages: {c.languages}</TableCell> */}
               <TableCell>Located in: {c.region}</TableCell>

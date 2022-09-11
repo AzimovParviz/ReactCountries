@@ -1,3 +1,4 @@
+import { SelectChangeEvent } from '@mui/material'
 import Country from './pages/Country'
 
 // Action types
@@ -117,7 +118,7 @@ export type SearchBarProps = {
   //onChange events
   handleNameChange: React.ChangeEventHandler<HTMLInputElement>
   handleLangChange: React.ChangeEventHandler<HTMLInputElement>
-  handleRegChange: React.ChangeEventHandler<HTMLSelectElement>
+  handleRegChange: (event: SelectChangeEvent<string>) => void
 }
 
 export type TableProps = {
